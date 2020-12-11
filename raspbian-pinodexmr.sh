@@ -22,7 +22,7 @@ sudo apt update && sudo apt upgrade -y
 ##Installing dependencies for --- Web Interface
 echo -e "\e[32mInstalling dependencies for --- Web Interface\e[0m"
 sleep 3
-sudo apt install apache2 shellinabox php7.3 php7.3-cli php7.3-common php7.3-curl php7.3-gd php7.3-json php7.3-mbstring php7.3-mysql php7.3-xml -y
+sudo apt install apache2 shellinabox php7.3 php7.3-cli php7.3-common php7.3-curl php7.3-gd php7.3-json php7.3-mbstring php7.3-mysql php7.3-xml jq -y
 sleep 3
 
 ##Installing dependencies for --- Monero
