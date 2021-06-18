@@ -1,6 +1,7 @@
 #Install of VTNerds Monero-LWS for PiNodeXMR for Raspberry Pi
 
 ## Standard Install steps as directed - https://github.com/vtnerd/monero-lws
+
 #Check dependencies
 sudo apt update && sudo apt install build-essential cmake libboost-all-dev libssl-dev libzmq3-dev doxygen graphviz -y
 
@@ -25,3 +26,19 @@ set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -latomic")
 ##Continue install as normal:
 make
 
+###Usage: [ In examples below replace any values shown within the '<>' symbols. Also remove the '<' and '>'. "" should be left in place and are required.]
+
+##Start daemon: (daemon listens to your monero node on ZMC port 18082 to interact with blockchain) 
+/home/pinodexmr/monero-lws/build/src/monero-lws-daemon --rest-server "http://<device-ip>:8443" --confirm-external-bind
+
+
+##Start Admin with: (admin is used to manage Address+View Key in database. On first start it will monitor for new tx from current height)
+/home/pinodexmr/monero-lws/build/src/monero-lws-admin add_account <wallet_address> <wallet_view_key>
+
+##Rescan address: (Tell lws-admin to rescan from block <0> (change as required) for tx belonging to address and continue to monitor)
+/home/pinodexmr/monero-lws/build/src/monero-lws-admin rescan 0 <wallet_address>
+
+##After some time, once blocks have scanned a local request can be made to check balance
+curl -w "\n" -X POST http://<device-ip>:8443/get_address_info -d '{"address": "<address>", "view_key": "<key>"}'  -H 'Content-Type: application/json'
+
+##Connection using OpenMonero or MyMonero wallet to <device-ip>:8443 as custom server should be possible and perform the function of lightwallet as expected (But I can't test as I don't have an IOS device)
