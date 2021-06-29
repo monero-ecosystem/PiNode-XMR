@@ -37,6 +37,11 @@ curl -sS https://raw.githubusercontent.com/antelle/generate-ip-cert/master/gener
 
 ## A copy of the generated ~/lswSslCert/cert.pem must be added to (windows) "LocalComputer\Trusted Root Certification Authorities\Certificates" to allow secure link between Windows MyMonero desktop and Monero-LWS service of PiNodeXMR IP.
 
+##If required for Android devices the following can generate the cert+keys .p12 file for import on to phone.
+
+openssl pkcs12 -export -in ~/lswSslCert/cert.pem -inkey ~/lswSslCert/key.pem -out androidCert.p12
+
+
 }
 
 ###Usage: [ In examples below replace any values shown within the '<>' symbols. Also remove the '<' and '>'. "" should be left in place and are required.]
