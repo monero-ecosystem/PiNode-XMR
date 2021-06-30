@@ -31,7 +31,7 @@ make
 
 {
 
-mkdir ~/lwsSslCert && cd lswSslCert
+mkdir ~/lwsSslCert && cd lwsSslCert
 
 curl -sS https://raw.githubusercontent.com/antelle/generate-ip-cert/master/generate-ip-cert.sh | bash -s $(hostname -I)
 
@@ -48,7 +48,7 @@ openssl pkcs12 -export -in ~/lswSslCert/cert.pem -inkey ~/lswSslCert/key.pem -ou
 
 ##Start daemon: (daemon listens to your monero node on ZMC port 18082 to interact with blockchain) 
 
-/home/pinodexmr/monero-lws/build/src/monero-lws-daemon --rest-server "https://<PiNodeXMR-IP>:8443" --confirm-external-bind --rest-ssl-key=/home/pinodexmr/lswSslCert/key.pem --rest-ssl-certificate=/home/pinodexmr/lswSslCert/cert.pem
+/home/pinodexmr/monero-lws/build/src/monero-lws-daemon --rest-server "https://<PiNodeXMR-IP>:8443" --confirm-external-bind --rest-ssl-key=/home/pinodexmr/lwsSslCert/key.pem --rest-ssl-certificate=/home/pinodexmr/lwsSslCert/cert.pem
 
 
 ##Start LWS Admin with: (admin is used to manage Address+View Key in database. On first start it will monitor for new tx from current height)
